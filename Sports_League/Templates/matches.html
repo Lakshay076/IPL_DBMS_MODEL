@@ -1,0 +1,33 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<div class="container mt-5">
+    <h1 class="text-center">Matches</h1>
+    <div class="table-responsive mt-4">
+        <table class="table table-bordered table-striped">
+            <thead class="thead-dark">
+                <tr>
+                    <th>Match Number</th>
+                    <th>Team 1</th>
+                    <th>Team 2</th>
+                    <th>Stadium</th>
+                    <th>Date</th>
+                    <th>Time</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for match in matches %}
+                <tr>
+                    <td>{{ match.Match_ID }}</td>
+                    <td>{{ match.Team1_Name }}</td>
+                    <td>{{ match.Team2_Name }}</td>
+                    <td>{{ match.Stadium_Name }}</td>
+                    <td>{{ match.Match_Date.strftime('%Y-%m-%d') }}</td>
+                    <td>{{ match.Match_Date.strftime('%H:%M') }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock %}

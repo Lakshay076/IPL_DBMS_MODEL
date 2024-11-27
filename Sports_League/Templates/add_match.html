@@ -1,0 +1,60 @@
+{% extends "layout.html" %}
+
+{% block content %}
+    <h1>Add Match</h1>
+    <form method="POST" enctype="multipart/form-data" class="team-form">
+        <div class="form-group">
+            <label for="team1_id">Team 1:</label>
+            <select name="team1_id" required>
+            {% for team in teams %}
+                <option value="{{ team['Team_ID'] }}">{{ team['Team_Name'] }}</option>
+            {% endfor %}
+        </select>
+        </div>
+        <div class="form-group">
+            <label for="team2_id">Team 2:</label>
+            <select name="team2_id" required>
+            {% for team in teams %}
+                <option value="{{ team['Team_ID'] }}">{{ team['Team_Name'] }}</option>
+            {% endfor %}
+        </select>
+        </div>
+        <div class="form-group">
+            <label for="stadium_id">Stadium:</label>
+            <select name="stadium_id" required>
+            {% for stadium in stadiums %}
+                <option value="{{ stadium['Stadium_ID'] }}">{{ stadium['Stadium_Name'] }}</option>
+            {% endfor %}
+        </select>
+        </div>
+
+        <div class="form-group">
+            <label for="match_date">Match Date and Time:</label>
+            <input type="datetime-local" name="match_date" required>
+        </div>
+
+        <div class="form-group">
+            <label for="match_type">Match Type:</label>
+            <select name="match_type" required>
+                <option value="League">League</option>
+                <option value="Qualifier">Qualifier</option>
+                <option value="Eliminator">Eliminator</option>
+                <option value="Final">Final</option>
+            </select>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Add Match</button>
+    </form>
+
+    <div class="form-group">
+        {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            <ul class="flashes">
+                {% for category, message in messages %}
+                    <li class="flash {{ category }}">{{ message }}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+    {% endwith %}
+    </div>
+{% endblock %}
